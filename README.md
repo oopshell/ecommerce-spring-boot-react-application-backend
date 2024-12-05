@@ -2,7 +2,6 @@
 
 A full-stack, high-performance e-commerce web application built using **Java Spring Boot** for the backend and **React** for the frontend. This project showcases seamless integration of modern technologies to deliver a robust, user-friendly online shopping experience.
 
----
 
 ## 🔥 Features
 - 🛒 **Dynamic Product Catalog:** Manage and display products with ease.
@@ -17,5 +16,3 @@ A full-stack, high-performance e-commerce web application built using **Java Spr
 - **API Integration:** RESTful API architecture
 
 👩‍💻 Perfect for developers looking to explore Spring Boot and React, or build their first full-stack e-commerce app! Clone, contribute, and customize. Let's build something amazing! 🚀😊
-
---- 
