@@ -1,0 +1,1 @@
+did not create UserDTO because users will not interact with User table directly, so no need to create DTO for it to let user insert data into User table.
