@@ -1,1 +1,5 @@
 did not create UserDTO because users will not interact with User table directly, so no need to create DTO for it to let user insert data into User table.
+
+
+mappers are used to convert entity to DTO (object) so that users can get data (in json) from backend app
+
