@@ -40,4 +40,12 @@ public class AuthController {
     public ResponseEntity<User> register(@Valid @RequestBody User user) {
         return ResponseEntity.ok(userService.registerUser(user));
     }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        userService.changePassword(email, request);
+        return ResponseEntity.ok().body("Password has been changed");
+    }
 }
