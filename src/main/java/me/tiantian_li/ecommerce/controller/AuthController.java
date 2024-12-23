@@ -1,12 +1,17 @@
 package me.tiantian_li.ecommerce.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import me.tiantian_li.ecommerce.dto.ChangePasswordRequest;
 import me.tiantian_li.ecommerce.dto.LoginRequest;
+import me.tiantian_li.ecommerce.model.User;
 import me.tiantian_li.ecommerce.service.JwtService;
 import me.tiantian_li.ecommerce.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,5 +34,10 @@ public class AuthController {
         final UserDetails userDetails = userService.getUserByEmail(loginRequest.getEmail());
         final String jwt = jwtService.generateToken(userDetails);
         return ResponseEntity.ok(jwt);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@Valid @RequestBody User user) {
+        return ResponseEntity.ok(userService.registerUser(user));
     }
 }
