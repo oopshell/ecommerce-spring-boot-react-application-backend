@@ -1,7 +1,7 @@
 package me.tiantian_li.ecommerce.config;
 
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+//import lombok.NoArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 import me.tiantian_li.ecommerce.repository.UserRepository;
 //import me.tiantian_li.ecommerce.service.JwtService;
 import org.springframework.context.annotation.Bean;
@@ -25,15 +25,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class SecurityConfig {
     private final UserRepository userRepository;
 //    private final JwtService jwtService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig() {
-        this.userRepository = null;
-        this.jwtAuthenticationFilter = null;
+    public SecurityConfig(UserRepository userRepository, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.userRepository = userRepository;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Bean
