@@ -1,7 +1,7 @@
 package me.tiantian_li.ecommerce.controller;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 import me.tiantian_li.ecommerce.dto.ChangePasswordRequest;
 import me.tiantian_li.ecommerce.dto.LoginRequest;
 import me.tiantian_li.ecommerce.model.User;
@@ -20,11 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
     private final JwtService jwtService;
+
+//    public AuthController() {
+//        this.authenticationManager = null;
+//        this.userService = null;
+//        this.jwtService = null;
+//    }
+    public AuthController(AuthenticationManager authenticationManager, UserService userService, JwtService jwtService) {
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.jwtService = jwtService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
