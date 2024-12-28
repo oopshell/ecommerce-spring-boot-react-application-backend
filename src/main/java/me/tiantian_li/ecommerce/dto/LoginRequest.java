@@ -1,13 +1,26 @@
 package me.tiantian_li.ecommerce.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
+////@Data
+//@Getter
+//@Setter
+@Setter
+@Getter
 public class LoginRequest {
     private String email;
     private String password;
+
+    public LoginRequest() {
+        this.email = null;
+        this.password = null;
+    }
+
+    public LoginRequest(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
 }
