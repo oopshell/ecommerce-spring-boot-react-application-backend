@@ -3,7 +3,7 @@ package me.tiantian_li.ecommerce.config;
 //import lombok.NoArgsConstructor;
 //import lombok.RequiredArgsConstructor;
 import me.tiantian_li.ecommerce.repository.UserRepository;
-//import me.tiantian_li.ecommerce.service.JwtService;
+import me.tiantian_li.ecommerce.service.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,12 +28,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 //@RequiredArgsConstructor
 public class SecurityConfig {
     private final UserRepository userRepository;
-//    private final JwtService jwtService;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtService jwtService;
 
-    public SecurityConfig(UserRepository userRepository, JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfig(UserRepository userRepository, JwtService jwtService) {
         this.userRepository = userRepository;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.jwtService = jwtService;
     }
 
     @Bean
@@ -52,15 +51,14 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // because jwt is stateless
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
-//    @Bean
-//    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-//        return new JwtAuthenticationFilter(jwtService, userDetailsService());
-////        return new JwtAuthenticationFilter();
-//    }
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter(jwtService, userDetailsService());
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
