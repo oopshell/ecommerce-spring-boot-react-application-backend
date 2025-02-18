@@ -89,3 +89,42 @@ docker-compose up -d --build
 ```
 
 The application will be available at `http://localhost:8080`
+
+## 🔧 API Testing Guide
+
+Here are some example API calls to test the basic authentication functionality:
+
+### 1. Register a New User
+```bash
+curl -X POST http://localhost:8080/api/auth/register \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "test@example.com",
+    "password": "password123",
+    "role": "USER"
+}'
+```
+
+### 2. Login
+```bash
+curl -X POST http://localhost:8080/api/auth/login \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "test@example.com",
+    "password": "password123"
+}'
+```
+
+### 3. Change Password
+```bash
+curl -X POST http://localhost:8080/api/auth/change-password \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer YOUR_JWT_TOKEN" \
+-d '{
+    "oldPassword": "password123",
+    "newPassword": "newpassword123",
+    "confirmPassword": "newpassword123"
+}'
+```
+
+> Note: Replace `YOUR_JWT_TOKEN` with the actual JWT token received from the login response.
